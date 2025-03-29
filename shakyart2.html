@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakfast Artwork</title>
+    <style>
+        /* ALL YOUR ORIGINAL STYLES */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #242424;
+            color: white;
+        }
+        header {
+            background: #111111;
+            color: white;
+            padding: 20px 10px;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .back-arrow {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            font-size: 24px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        .cart-icon {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            font-size: 18px;
+            text-decoration: none;
+            background: #00000000;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+        .content {
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .checkout-button {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .checkout-button:hover {
+            background-color: #000000;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 5px;
+            }
+            h1 {
+                font-size: 20px;
+                margin: 0 50px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .back-arrow {
+                font-size: 20px;
+            }
+            .cart-icon {
+                font-size: 16px;
+                padding: 5px 10px;
+            }
+        }
+
+        /* NEW SWIPE STYLES */
+        .swiper {
+            width: 400px;
+            height: auto;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .swiper-wrapper {
+            display: flex;
+            transition: transform 0.3s ease;
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            flex-shrink: 0;
+            width: 100%;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+        }
+        .swiper-pagination {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: #555;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .swiper-pagination-bullet-active {
+            background: white;
+        }
+        @media (max-width: 600px) {
+            .swiper {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="main.html" class="back-arrow">&#8592;</a>
+        <h1>Breakfast Artwork</h1>
+        <a href="checkout.html" class="cart-icon">🛒 <span id="cart-count" class="cart-count">0</span></a>
+    </header>
+    <div class="content">
+        <!-- Swiper Container -->
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="money.jpg" alt="Money Artwork">
+                </div>
+                <div class="swiper-slide">
+                    <img src="facetest.jpg" alt="Artwork Detail">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        
+        <p><strong>Title:</strong> Breakfast</p>
+        <p><strong>Price:</strong> $90</p>
+        <p><strong>Description:</strong> A beautifully hand-drawn piece capturing the essence of a peaceful morning meal.</p>
+        <button class="checkout-button" onclick="addToCart()">Add to Cart</button>
+    </div>
+    
+    <script>
+        // SWIPE FUNCTIONALITY
+        const swiperWrapper = document.querySelector('.swiper-wrapper');
+        const pagination = document.querySelector('.swiper-pagination');
+        const slides = document.querySelectorAll('.swiper-slide');
+        let currentIndex = 0;
+        let startX, moveX;
+        const slideCount = slides.length;
+
+        // Create pagination bullets
+        slides.forEach((_, index) => {
+            const bullet = document.createElement('div');
+            bullet.classList.add('swiper-pagination-bullet');
+            if (index === 0) bullet.classList.add('swiper-pagination-bullet-active');
+            bullet.addEventListener('click', () => {
+                goToSlide(index);
+            });
+            pagination.appendChild(bullet);
+        });
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateSlider();
+            updatePagination();
+        }
+
+        function updateSlider() {
+            swiperWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function updatePagination() {
+            document.querySelectorAll('.swiper-pagination-bullet').forEach((bullet, index) => {
+                bullet.classList.toggle('swiper-pagination-bullet-active', index === currentIndex);
+            });
+        }
+
+        // Touch events
+        swiperWrapper.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            swiperWrapper.style.transition = 'none';
+        });
+
+        swiperWrapper.addEventListener('touchmove', (e) => {
+            moveX = e.touches[0].clientX;
+            const diff = startX - moveX;
+            swiperWrapper.style.transform = `translateX(calc(-${currentIndex * 100}% - ${diff}px))`;
+        });
+
+        swiperWrapper.addEventListener('touchend', () => {
+            swiperWrapper.style.transition = 'transform 0.3s ease';
+            const threshold = 50;
+            const diff = startX - moveX;
+            
+            if (diff > threshold && currentIndex < slideCount - 1) {
+                currentIndex++;
+            } else if (diff < -threshold && currentIndex > 0) {
+                currentIndex--;
+            }
+            updateSlider();
+            updatePagination();
+        });
+
+        // Mouse events for desktop
+        swiperWrapper.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            startX = e.clientX;
+            swiperWrapper.style.transition = 'none';
+            document.addEventListener('mousemove', mouseMove);
+            document.addEventListener('mouseup', mouseUp);
+        });
+
+        function mouseMove(e) {
+            moveX = e.clientX;
+            const diff = startX - moveX;
+            swiperWrapper.style.transform = `translateX(calc(-${currentIndex * 100}% - ${diff}px))`;
+        }
+
+        function mouseUp() {
+            document.removeEventListener('mousemove', mouseMove);
+            document.removeEventListener('mouseup', mouseUp);
+            swiperWrapper.style.transition = 'transform 0.3s ease';
+            
+            const threshold = 50;
+            const diff = startX - moveX;
+            
+            if (diff > threshold && currentIndex < slideCount - 1) {
+                currentIndex++;
+            } else if (diff < -threshold && currentIndex > 0) {
+                currentIndex--;
+            }
+            updateSlider();
+            updatePagination();
+        }
+
+        // ORIGINAL CART FUNCTIONALITY
+        function addToCart() {
+            let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+            let item = { 
+                title: "Money", 
+                price: 100, 
+                image: "money.jpg"
+            };
+            cart.push(item);
+            sessionStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            alert("Item added to cart!");
+        }
+        
+        function updateCartCount() {
+            let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+            document.getElementById("cart-count").textContent = cart.length;
+        }
+        
+        updateCartCount();
+    </script>
+</body>
+</html>

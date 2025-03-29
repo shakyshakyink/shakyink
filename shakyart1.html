@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakfast Artwork</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #242424;
+            color: white;
+        }
+        header {
+            background: #111111;
+            color: white;
+            padding: 20px 10px;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .back-arrow {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            font-size: 24px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        .cart-icon {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            font-size: 18px;
+            text-decoration: none;
+            background: #00000000;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+        .content {
+            padding: 20px;
+            margin-top: 20px;
+        }
+        img {
+            width: 400px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .checkout-button {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .checkout-button:hover {
+            background-color: #000000;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 5px;
+            }
+            h1 {
+                font-size: 20px;
+                margin: 0 50px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .back-arrow {
+                font-size: 20px;
+            }
+            .cart-icon {
+                font-size: 16px;
+                padding: 5px 10px;
+            }
+            img {
+                width: 90%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="main.html" class="back-arrow">&#8592;</a>
+        <h1>Breakfast Artwork</h1>
+        <a href="checkout.html" class="cart-icon">🛒 <span id="cart-count" class="cart-count">0</span></a>
+    </header>
+    <div class="content">
+        <img src="breakfast.jpg" alt="Breakfast Artwork">
+        <p><strong>Title:</strong> Breakfast</p>
+        <p><strong>Price:</strong> $100</p>
+        <p><strong>Description:</strong> A beautifully hand-drawn piece capturing the essence of a peaceful morning meal.</p>
+        <button class="checkout-button" onclick="addToCart()">Add to Cart</button>
+    </div>
+    
+    <script>
+        // Function to add an item to the cart
+        function addToCart() {
+            let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+            let item = { 
+                title: "Breakfast", 
+                price: 100, 
+                image: "breakfast.jpg" // Add image path
+            };
+            cart.push(item);
+            sessionStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            alert("Item added to cart!");
+        }
+
+        // Function to update the cart count
+        function updateCartCount() {
+            let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+            document.getElementById("cart-count").textContent = cart.length;
+        }
+
+        // Update cart count when the page loads
+        updateCartCount();
+    </script>
+</body>
+</html>
