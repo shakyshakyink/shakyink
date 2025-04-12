@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShakyInk</title>
+    <style>
+        /* Prevent horizontal overflow on the body */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* General styles for the body */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0 0 50px;
+            background-color: #232323;
+            color: white;
+        }
+        
+        /* Styling for the header section */
+        header {
+            background: #161616;
+            color: white;
+            padding: 5px 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        /* Navigation bar styles - Increased button size */
+        nav {
+            margin: 10px 0;
+        }
+        nav a {
+            margin: 0 12px;
+            text-decoration: none;
+            color: #dedede;
+            font-weight: bold;
+            font-size: 15px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        nav a:hover {
+            background-color: #333;
+        }
+        
+        /* Logo styling */
+        header img {
+            width: 200px;
+            height: auto;
+        }
+        
+        /* Video styling */
+        #top-video {
+            width: 100%;
+            max-height: 400px;
+            margin-top: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* General section styling */
+        section {
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Add scroll-margin-top to account for the fixed header */
+        #available, #sold, #about, #purchase {
+            scroll-margin-top: 240px;
+        }
+        
+        /* Carousel container */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        
+        /* Styles for the image carousel */
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 10px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .carousel-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            width: 300px;
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .carousel-title, .carousel-price {
+            margin: 5px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        /* Navigation arrows */
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            color: white;
+            font-size: 24px;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+        
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .carousel-button-prev {
+            left: 10px;
+        }
+        
+        .carousel-button-next {
+            right: 10px;
+        }
+        
+        .carousel-button-disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+        
+        /* Purchase section styling */
+        #purchase {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        
+        /* Footer styling */
+        footer {
+            background: #333;
+            color: white;
+            padding: 10px;
+            width: 100%;
+        }
+
+        /* Hide scrollbar for carousel */
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+        .carousel {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .carousel-button {
+                width: 30px;
+                height: 30px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header section with website title and navigation -->
+    <header>
+        <img src="shakylogo.jpeg" alt="ShakyInk Logo">
+        <nav>
+            <a href="#available">Available</a>
+            <a href="#sold">Sold</a>
+            <a href="#purchase">Purchase</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+    
+    <!-- Video at the top of the page -->
+    <video id="top-video" autoplay muted loop playsinline preload="auto">
+        <source src="skatetest.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <!-- Available section with an image carousel -->
+    <section id="available">
+        <h2>Available</h2>
+        <div class="carousel-container">
+            <div class="carousel" id="available-carousel">
+                <div class="carousel-item">
+                    <a href="shakyart1.html"><img src="white.png" alt="Digital artwork titled 'Breakfast' by ShakyInk"></a>
+                    <div class="carousel-title">Title 1</div>
+                    <div class="carousel-price">$100</div>
+                </div>
+                <div class="carousel-item">
+                    <a href="shakyart2.html"><img src="money.jpg" alt=" 'Money' by ShakyInk"></a>
+                    <div class="carousel-title">Title 2</div>
+                    <div class="carousel-price">$120</div>
+                </div>
+                <div class="carousel-item">
+                    <a href="shakyart1.html"><img src="white.png" alt="Digital artwork titled 'Breakfast' by ShakyInk"></a>
+                    <div class="carousel-title">Title 3</div>
+                    <div class="carousel-price">$90</div>
+                </div>
+            </div>
+            <div class="carousel-button carousel-button-prev">&#10094;</div>
+            <div class="carousel-button carousel-button-next">&#10095;</div>
+        </div>
+    </section>
+    
+    <!-- Sold section with an image carousel -->
+    <section id="sold">
+        <h2>Sold</h2>
+        <div class="carousel-container">
+            <div class="carousel" id="sold-carousel">
+                <div class="carousel-item">
+                    <img src="white.png" alt="Sold digital artwork titled 'Breakfast' by ShakyInk">
+                    <div class="carousel-title">Sold Title 1</div>
+                </div>
+                <div class="carousel-item">
+                    <img src="white.png" alt="Sold digital artwork titled 'Breakfast' by ShakyInk">
+                    <div class="carousel-title">Sold Title 2</div>
+                </div>
+                <div class="carousel-item">
+                    <img src="white.png" alt="Sold digital artwork titled 'Breakfast' by ShakyInk">
+                    <div class="carousel-title">Sold Title 3</div>
+                </div>
+            </div>
+            <div class="carousel-button carousel-button-prev">&#10094;</div>
+            <div class="carousel-button carousel-button-next">&#10095;</div>
+        </div>
+    </section>
+    
+    <!-- Purchase section -->
+    <section id="purchase">
+        <h2>How to Purchase</h2>
+        <p>To purchase any of the available artworks, please contact:</p>
+        <p><strong>officialshakyink@gmail.com</strong></p>
+        <p>In your email, please include:</p>
+        <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
+            <li>The title of the artwork you're interested in</li>
+            <li>Your contact information</li>
+            <li>Any special requests</li>
+        </ul>
+        <p>We'll respond promptly with payment and shipping details.</p>
+    </section>
+    
+    <!-- About section -->
+    <section id="about">
+        <h2>About</h2>
+        <p>This website showcases digital artwork available for purchase.</p>
+    </section>
+    
+    <!-- Footer section with contact information -->
+    <footer>
+        <p>Email: officialshakyink@gmail.com</p>
+        <p>Instagram: shakyink</p>
+        <p>&copy; 2025 ShakyInk</p>
+    </footer>
+
+    <script>
+        // Initialize carousels
+        function setupCarousel(carouselId) {
+            const carousel = document.getElementById(carouselId);
+            const prevButton = carousel.parentElement.querySelector('.carousel-button-prev');
+            const nextButton = carousel.parentElement.querySelector('.carousel-button-next');
+            
+            let isDragging = false;
+            let startX, scrollLeft;
+            
+            // Update button states
+            function updateButtons() {
+                const { scrollLeft, scrollWidth, clientWidth } = carousel;
+                prevButton.classList.toggle('carousel-button-disabled', scrollLeft === 0);
+                nextButton.classList.toggle('carousel-button-disabled', scrollLeft >= scrollWidth - clientWidth - 1);
+            }
+            
+            // Arrow navigation
+            prevButton.addEventListener('click', () => {
+                carousel.scrollBy({
+                    left: -300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            nextButton.addEventListener('click', () => {
+                carousel.scrollBy({
+                    left: 300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Touch/mouse events for dragging
+            carousel.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+                carousel.style.cursor = 'grabbing';
+                carousel.style.scrollBehavior = 'auto';
+            });
+            
+            carousel.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startX = e.touches[0].pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+                carousel.style.scrollBehavior = 'auto';
+            }, { passive: true });
+            
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 2;
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+            
+            carousel.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const x = e.touches[0].pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 2;
+                carousel.scrollLeft = scrollLeft - walk;
+            }, { passive: true });
+            
+            const endDrag = () => {
+                isDragging = false;
+                carousel.style.cursor = 'grab';
+                carousel.style.scrollBehavior = 'smooth';
+                updateButtons();
+            };
+            
+            carousel.addEventListener('mouseup', endDrag);
+            carousel.addEventListener('mouseleave', endDrag);
+            carousel.addEventListener('touchend', endDrag);
+            
+            // Update buttons on scroll
+            carousel.addEventListener('scroll', updateButtons);
+            
+            // Initial button state
+            updateButtons();
+        }
+        
+        // Setup both carousels
+        setupCarousel('available-carousel');
+        setupCarousel('sold-carousel');
+    </script>
+</body>
+</html>
