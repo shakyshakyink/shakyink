@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official ShakyInk</title>
+    <style>
+        @font-face {
+            font-family: 'Cityburn';
+            src: url('fonts/cityburn.ttf') format('truetype');
+            font-weight: 50;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        #entry-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('backgroundindex.JPG') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        .logo {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            width: 300px;
+            max-width: 80%;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+        }
+
+        .overlay {
+            position: absolute;
+            top: 65%; /* Increased from 60% for mobile */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            width: 100%;
+            text-align: center;
+        }
+
+        .overlay h1 {
+            font-family: 'Cityburn', sans-serif;
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 50;
+            -webkit-text-stroke: 0.3px white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            opacity: 0.8;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .overlay button {
+            background: transparent;
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border: 1px solid white;
+            outline: none;
+            cursor: pointer;
+            backdrop-filter: blur(2px);
+            min-width: 120px;
+        }
+
+        .overlay button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            letter-spacing: 3px;
+        }
+
+        @media (min-width: 769px) {
+            .logo {
+                width: 400px;
+                top: 45%;
+            }
+            .overlay {
+                top: 65%; /* Same as mobile now */
+            }
+            .overlay h1 {
+                font-size: 2.5rem;
+                letter-spacing: 5px;
+            }
+            .overlay button {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+                letter-spacing: 3px;
+            }
+        }
+
+        /* Additional small-screen adjustment */
+        @media (max-width: 400px) {
+            .overlay {
+                top: 68%; /* Slightly lower on very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="entry-bg"></div>
+    <img src="shakylogo.png" alt="ShakyInk Logo" class="logo">
+    <div class="overlay">
+        <h1>Welcome to ShakyInk</h1>
+        <div class="button-container">
+            <button onclick="leaveSite()">LEAVE</button>
+            <button onclick="enterSite()">ENTER</button>
+        </div>
+    </div>
+
+    <script>
+        function enterSite() { window.location.href = "main.html"; }
+        function leaveSite() { window.location.href = "https://www.google.com"; }
+    </script>
+</body>
+</html>
