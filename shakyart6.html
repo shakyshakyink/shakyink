@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clown Artwork</title>
+    <style>
+        body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #232323 url('background3.JPG') no-repeat center center fixed;
+        background-size: cover;
+        /* Add your existing body styles here */
+    }
+        /* Font Faces - Only Cityburn now */
+        @font-face {
+            font-family: 'Cityburn';
+            src: url('fonts/cityburn.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Base Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #232323;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Header with Cityburn - Matching main.html */
+        header {
+            background: #161616;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        header img {
+            width: 200px;
+            height: auto;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-family: 'Cityburn', sans-serif;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        nav a:visited {
+            color: white;
+        }
+
+        nav a:hover {
+            background-color: #333;
+            text-decoration: none;
+        }
+
+        /* Content area */
+        .content {
+            padding: 20px;
+            margin-top: 220px; /* Adjusted for header height */
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Artwork title */
+        .artwork-title {
+            font-family: 'Cityburn', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin: 20px 0;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* Image gallery styles */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* Artwork info */
+        .artwork-info {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .content {
+                margin-top: 180px;
+                padding: 15px;
+            }
+            
+            .image-gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .image-container {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .artwork-title {
+                font-size: 2rem;
+            }
+            
+            header img {
+                width: 150px;
+            }
+            
+            nav a {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                margin-top: 160px;
+            }
+            
+            .artwork-title {
+                font-size: 1.8rem;
+            }
+            
+            nav a {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header matching main.html -->
+    <header>
+        <img src="shakylogo.png" alt="ShakyInk Logo">
+        <nav>
+            <a href="main.html#products">Products</a>
+            <a href="main.html#purchase">Purchase</a>
+            <a href="main.html#about">About</a>
+        </nav>
+    </header>
+    
+    <div class="content">
+        <!-- Artwork Title -->
+        <div class="artwork-title">Brown</div>
+        
+        <!-- Image Gallery -->
+        <div class="image-gallery">
+            <div class="image-container">
+                <img src="brown.JPG" alt="Clown Artwork Front">
+            </div>
+            <div class="image-container">
+                <img src="brownclose1.JPG" alt="Clown Artwork Back">
+            </div>
+            <div class="image-container">
+                <img src="brownclose2.JPG" alt="Clown Artwork Back">
+            </div>
+        </div>
+        
+        <!-- Artwork Information -->
+        <div class="artwork-info">
+            <p>Contact: <strong>officialshakyink@gmail.com</strong> for purchase inquiries</p>
+        </div>
+    </div>
+</body>
+</html>
